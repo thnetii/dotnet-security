@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;netstandard2.0</TargetFrameworks>
-    <TargetFramework Condition="'$(BuildDefaultTargetFramework)'!=''">netstandard1.3</TargetFramework>
+    <DefaultTargetFramework>netstandard1.3</DefaultTargetFramework>
+    <TargetFrameworks>$(DefaultTargetFramework);netstandard2.0</TargetFrameworks>
+    <TargetFramework Condition="'$(BuildDefaultTargetFramework)'!=''">$(DefaultTargetFramework)</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
