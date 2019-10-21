@@ -22,13 +22,14 @@
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Label="Version" Condition="'$(VersionPrefix)'!=''">
-    <!--<VersionPrefix>0.0.1</VersionPrefix>-->
     <FileVersion>$(VersionPrefix)</FileVersion>
     <AssemblyVersion>$(FileVersion)</AssemblyVersion>
   </PropertyGroup>
-  <PropertyGroup Label="CI Build" Condition="'$(BuildId)'!=''">
+  <PropertyGroup Label="CI Build" Condition="'$(BuildId)'!='' and !('$(Configuration)'=='Release' and ($(BuildSourceBranch.StartsWith('refs/heads/rel/')) or $(BuildSourceBranch.StartsWith('rel/'))))">
     <VersionSuffix Condition="'$(VersionSuffix)'!=''">$(VersionSuffix)-build$(BuildId)</VersionSuffix>
     <VersionSuffix Condition="'$(VersionSuffix)'==''">build$(BuildId)</VersionSuffix>
+  </PropertyGroup>
+  <PropertyGroup Label="CI Build" Condition="'$(BuildId)'!=''">
     <AssemblyVersion Condition="'$(FileVersion)'!=''">$(FileVersion).$(BuildId)</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -36,7 +37,7 @@
     <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Label="SourceLink">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19270-01">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19351-01">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
