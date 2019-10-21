@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "THNETII.Security.WindowsImpersonation.Sample": {
-      "commandName": "Project",
-      "commandLineArgs": "[config:environment=Development] \"-u=\""
-    }
-  }
-}
